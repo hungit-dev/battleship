@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <div class="buttons-container">
+      <div class="ship-length-buttons-container">
+        <button id="ship-length-5-button">5-Cell Ship</button>
+        <button id="ship-length-4-button">4-Cell Ship</button>
+        <button id="ship-length-3-button">3-Cell Ship</button>
+        <button id="ship-length-2-button">2-Cell Ship</button>
+      </div>
+      <div class="place-ship-button-container">
+        <button id="place-ship-horizontally-button">
+          Place Ship horizontally
+        </button>
+        <button id="place-ship-vertically-button">Place Ship vertically</button>
+      </div>
+    </div>
+    <div>
+      <div id="winner-message"></div>
+      <div class="start-button-container">
+        <button id="start-button">Start</button>
+        <button id="refresh-page-button">Refresh</button>
+      </div>
+
+      <div class="container">
+        <div class="my-grid-container">
+          <div class="my-grid"></div>
+          <div class="title">My grid</div>
+        </div>
+        <div class="opponent-grid-container">
+          <div class="opponent-grid"></div>
+          <div class="title">Opponent's grid</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="battleship.dom.js"></script>
+  </body>
+</html>

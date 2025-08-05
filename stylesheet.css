@@ -1,0 +1,89 @@
+/*tags*/
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*class*/
+.container {
+    display: flex;
+    gap: 70px;    
+}
+.my-grid-container,
+.opponent-grid-container{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+   
+}
+.start-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ship-length-buttons-container,
+.place-ship-button-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+.my-grid {
+    width: 100%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(10,40px);
+    grid-template-rows: repeat(10,40px);
+      
+}
+.opponent-grid{
+    width: 100%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(10,40px);
+    grid-template-rows: repeat(10,40px);
+}
+.opponent-grid div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title {
+    text-align: center;
+}
+.grid-cell {
+    border: 1px solid black;
+}
+.selecting-grid-cells {
+   background-color: gray;
+}
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+
+/*id*/
+#winner-message{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+#start-button,
+#refresh-page-button {
+ width: 100px;
+ height: 50px;
+ font-size: 18px;
+ margin-right: 20px;
+}
+
