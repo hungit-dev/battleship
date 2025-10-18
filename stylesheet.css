@@ -78,6 +78,7 @@ body {
     background-color: gray;
 }
 
+.lock,
 .disabled {
     cursor: not-allowed;
     opacity: 0.5;

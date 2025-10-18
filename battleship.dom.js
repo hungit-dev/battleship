@@ -14,6 +14,10 @@ let currentLength = 2;
 let direction = "row";
 let isReady = false;
 let foundWinner = false;
+let isTwoCellShipPlaced=false;
+let isThreeCellShipPlaced=false;
+let isFourCellShipPlaced=false;
+let isFiveCellShipPlaced=false
 // create 10x10 UI grid and Associate each UI grid cell with its corresponding item in the array.
 function createUIGrid(gridName, gameBoardName) {
   for (let row = 0; row < gameBoardName.length; row++) {
@@ -61,6 +65,9 @@ function removeCellHighlights(rowCoordinate, columnCoordinate, gridName) {
   }
 }
 function hasHumanPlayerPlacedShips(gameBoardName) {
+  if(!isTwoCellShipPlaced || !isThreeCellShipPlaced ||!isFourCellShipPlaced ||!isFiveCellShipPlaced) {
+    return false
+  }
   for (let row = 0; row < gameBoardName.length; row++) {
     for (let col = 0; col < gameBoardName[row].length; col++) {
       if (gameBoardName[row][col] !== 0) {
@@ -69,6 +76,25 @@ function hasHumanPlayerPlacedShips(gameBoardName) {
     }
   }
   return false;
+}
+function lockShip(currentLength){
+  if(currentLength == 2){
+    isTwoCellShipPlaced=true;
+    select2LengthButton.classList.add('lock')
+  }
+  if(currentLength==3) {
+    isThreeCellShipPlaced=true;
+    select3LengthButton.classList.add('lock')
+  }
+  if(currentLength==4) {
+    isFourCellShipPlaced=true;
+    select4LengthButton.classList.add('lock')
+  }
+  if(currentLength==5){
+    isFiveCellShipPlaced=true;
+    select5LengthButton.classList.add('lock')
+  }
+ 
 }
 function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
   if (isReady === false) {
@@ -84,6 +110,7 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
       )
       //select the grid cells only if the game is not started
     ) {
+      lockShip(currentLength)
       //select the correct UI grid cells based on the correct coordinates
       for (let i = 0; i < currentLength; i++) {
         if (direction === "row") {
@@ -103,6 +130,7 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
           selectedElement.style.backgroundColor = "grey";
         }
       }
+      currentLength=0
     }
   }
 
@@ -255,6 +283,7 @@ const select2LengthButton = document.querySelector("#ship-length-2-button");
 select5LengthButton.addEventListener("click", () => {
   currentLength = 5;
 });
+
 select4LengthButton.addEventListener("click", () => {
   currentLength = 4;
 });
@@ -313,9 +342,10 @@ myGrid.addEventListener("click", (event) => {
 const startGameButton = document.querySelector("#start-button");
 startGameButton.addEventListener("click", () => {
   if (hasHumanPlayerPlacedShips(humanGameBoard) === false) {
-    alert("Please place your ships before clicking start button!");
+    alert("Please place all your ships before clicking start button!");
     return;
   }
+
   isReady = true;
   currentLength = 1; //let users select only 1 cell in 1 turn
   startGameButton.disabled = true;
