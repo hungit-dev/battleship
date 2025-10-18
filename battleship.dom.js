@@ -136,6 +136,7 @@ function handleGridCellsClickOnComputerPlayerGameBoard(event) {
   if (checkForWinner() === "human") {
     winnerMessage.textContent = "Human is the winner!";
   }
+  opponentGrid.classList.add("disabled")//disable opponent grid immediately after attacking opponentGrid
   // Let the computer attack the human's game board after 1 second and show the currently active (visible) game board
 
   setTimeout(letComputerAttack, 1000);
