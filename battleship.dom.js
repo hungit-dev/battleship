@@ -14,10 +14,10 @@ let currentLength = 2;
 let direction = "row";
 let isReady = false;
 let foundWinner = false;
-let isTwoCellShipPlaced=false;
-let isThreeCellShipPlaced=false;
-let isFourCellShipPlaced=false;
-let isFiveCellShipPlaced=false
+let isTwoCellShipPlaced = false;
+let isThreeCellShipPlaced = false;
+let isFourCellShipPlaced = false;
+let isFiveCellShipPlaced = false;
 // create 10x10 UI grid and Associate each UI grid cell with its corresponding item in the array.
 function createUIGrid(gridName, gameBoardName) {
   for (let row = 0; row < gameBoardName.length; row++) {
@@ -38,13 +38,17 @@ function highlightGridCells(rowCoordinate, columnCoordinate, gridName) {
       const selectedElement = gridName.querySelector(
         `div[data-row="${rowCoordinate}"][data-col="${columnCoordinate + i}"]`
       );
-      selectedElement.classList.add("selecting-grid-cells");
+      if (selectedElement) {
+        selectedElement.classList.add("selecting-grid-cells");
+      }
     }
     if (direction === "column") {
       const selectedElement = gridName.querySelector(
         `div[data-row="${rowCoordinate + i}"][data-col="${columnCoordinate}"]`
       );
-      selectedElement.classList.add("selecting-grid-cells");
+      if (selectedElement) {
+        selectedElement.classList.add("selecting-grid-cells");
+      }
     }
   }
 }
@@ -54,19 +58,28 @@ function removeCellHighlights(rowCoordinate, columnCoordinate, gridName) {
       const selectedElement = gridName.querySelector(
         `div[data-row="${rowCoordinate}"][data-col="${columnCoordinate + i}"]`
       );
-      selectedElement.classList.remove("selecting-grid-cells");
+      if (selectedElement) {
+        selectedElement.classList.remove("selecting-grid-cells");
+      }
     }
     if (direction === "column") {
       const selectedElement = gridName.querySelector(
         `div[data-row="${rowCoordinate + i}"][data-col="${columnCoordinate}"]`
       );
-      selectedElement.classList.remove("selecting-grid-cells");
+      if (selectedElement) {
+        selectedElement.classList.remove("selecting-grid-cells");
+      }
     }
   }
 }
 function hasHumanPlayerPlacedShips(gameBoardName) {
-  if(!isTwoCellShipPlaced || !isThreeCellShipPlaced ||!isFourCellShipPlaced ||!isFiveCellShipPlaced) {
-    return false
+  if (
+    !isTwoCellShipPlaced ||
+    !isThreeCellShipPlaced ||
+    !isFourCellShipPlaced ||
+    !isFiveCellShipPlaced
+  ) {
+    return false;
   }
   for (let row = 0; row < gameBoardName.length; row++) {
     for (let col = 0; col < gameBoardName[row].length; col++) {
@@ -77,24 +90,23 @@ function hasHumanPlayerPlacedShips(gameBoardName) {
   }
   return false;
 }
-function lockShip(currentLength){
-  if(currentLength == 2){
-    isTwoCellShipPlaced=true;
-    select2LengthButton.classList.add('lock')
+function lockShip(currentLength) {
+  if (currentLength == 2) {
+    isTwoCellShipPlaced = true;
+    select2LengthButton.classList.add("lock");
   }
-  if(currentLength==3) {
-    isThreeCellShipPlaced=true;
-    select3LengthButton.classList.add('lock')
+  if (currentLength == 3) {
+    isThreeCellShipPlaced = true;
+    select3LengthButton.classList.add("lock");
   }
-  if(currentLength==4) {
-    isFourCellShipPlaced=true;
-    select4LengthButton.classList.add('lock')
+  if (currentLength == 4) {
+    isFourCellShipPlaced = true;
+    select4LengthButton.classList.add("lock");
   }
-  if(currentLength==5){
-    isFiveCellShipPlaced=true;
-    select5LengthButton.classList.add('lock')
+  if (currentLength == 5) {
+    isFiveCellShipPlaced = true;
+    select5LengthButton.classList.add("lock");
   }
- 
 }
 function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
   if (isReady === false) {
@@ -110,7 +122,7 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
       )
       //select the grid cells only if the game is not started
     ) {
-      lockShip(currentLength)
+      lockShip(currentLength);
       //select the correct UI grid cells based on the correct coordinates
       for (let i = 0; i < currentLength; i++) {
         if (direction === "row") {
@@ -130,7 +142,7 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
           selectedElement.style.backgroundColor = "grey";
         }
       }
-      currentLength=0
+      currentLength = 0;
     }
   }
 
@@ -164,7 +176,7 @@ function handleGridCellsClickOnComputerPlayerGameBoard(event) {
   if (checkForWinner() === "human") {
     winnerMessage.textContent = "Human is the winner!";
   }
-  opponentGrid.classList.add("disabled")//disable opponent grid immediately after attacking opponentGrid
+  opponentGrid.classList.add("disabled"); //disable opponent grid immediately after attacking opponentGrid
   // Let the computer attack the human's game board after 1 second and show the currently active (visible) game board
 
   setTimeout(letComputerAttack, 1000);
@@ -354,6 +366,7 @@ startGameButton.addEventListener("click", () => {
 });
 opponentGrid.addEventListener("click", (event) => {
   handleGridCellsClickOnComputerPlayerGameBoard(event);
+  console.log(humanGameBoard);
 });
 refreshPageButton.addEventListener("click", () => {
   window.location.reload();

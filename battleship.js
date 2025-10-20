@@ -79,6 +79,7 @@ function GameBoard() {
   const receiveAttack = (coordinate1, coordinate2) => {
     if (gameBoard[coordinate1][coordinate2] !== 0) {
       const ship = gameBoard[coordinate1][coordinate2];
+      gameBoard[coordinate1][coordinate2] = "hit";
       ship.hit();
       return "hit";
     } else {
