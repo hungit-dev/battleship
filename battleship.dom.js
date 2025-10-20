@@ -131,7 +131,7 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
               columnCoordinate + i
             }"]`
           );
-          selectedElement.style.backgroundColor = "grey";
+          selectedElement.classList.add("selected-grid-cell");
         }
         if (direction === "column") {
           const selectedElement = gridName.querySelector(
@@ -139,7 +139,7 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
               rowCoordinate + i
             }"][data-col="${columnCoordinate}"]`
           );
-          selectedElement.style.backgroundColor = "grey";
+          selectedElement.classList.add("selected-grid-cell");
         }
       }
       currentLength = 0;
@@ -165,26 +165,24 @@ function handleGridCellsClickOnComputerPlayerGameBoard(event) {
     opponentPlayerConsole.receiveAttack(rowCoordinate, columnCoordinate) ===
     "hit"
   ) {
-    event.target.style.backgroundColor = "red";
-
+    event.target.classList.add("hit-cell");
     event.target.classList.add("clicked");
   } else {
     event.target.textContent = "X";
 
     event.target.classList.add("clicked");
   }
-  if (checkForWinner() === "human") {
-    winnerMessage.textContent = "Human is the winner!";
+  checkForWinner();
+  if (!foundWinner) {
+    // Let the computer attack the human's game board after 1 second and show the currently active (visible) game board
+    setTimeout(letComputerAttack, 1000);
+    setTimeout(() => {
+      myGrid.classList.add("disabled");
+      opponentGrid.classList.remove("disabled");
+      lockGridAndButtons();
+    }, 2000);
   }
   opponentGrid.classList.add("disabled"); //disable opponent grid immediately after attacking opponentGrid
-  // Let the computer attack the human's game board after 1 second and show the currently active (visible) game board
-
-  setTimeout(letComputerAttack, 1000);
-  setTimeout(() => {
-    myGrid.classList.add("disabled");
-    opponentGrid.classList.remove("disabled");
-    lockGridAndButtons();
-  }, 2000);
 }
 
 function lockGridAndButtons() {
@@ -230,15 +228,13 @@ function letComputerAttack() {
         gridCell.textContent = "X";
       }
       if (receivedAttack === "hit") {
-        gridCell.style.backgroundColor = "red";
+        gridCell.classList.add("hit-cell");
       }
       gridCell.classList.add("attacked");
       attack = true;
     }
   }
-  if (checkForWinner() === "computer") {
-    winnerMessage.textContent = "Computer is the Winner!";
-  }
+  checkForWinner();
 }
 
 function letComputerPlaceShips() {
@@ -278,12 +274,12 @@ function checkForWinner() {
   if (humanPlayerConsole.areAllShipsSunk() === true) {
     foundWinner = true;
     lockGridAndButtons();
-    return "computer";
+    winnerMessage.textContent = "Computer is the winner!";
   }
   if (opponentPlayerConsole.areAllShipsSunk() === true) {
     foundWinner = true;
     lockGridAndButtons();
-    return "human";
+    winnerMessage.textContent = "Human is the winner!";
   }
 }
 
@@ -367,6 +363,7 @@ startGameButton.addEventListener("click", () => {
 opponentGrid.addEventListener("click", (event) => {
   handleGridCellsClickOnComputerPlayerGameBoard(event);
   console.log(humanGameBoard);
+  console.log(opponentGameBoard);
 });
 refreshPageButton.addEventListener("click", () => {
   window.location.reload();
