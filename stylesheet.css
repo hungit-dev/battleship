@@ -7,7 +7,7 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #101820;
   min-height: 100vh;
   color: #333;
   padding: 20px;
@@ -48,15 +48,15 @@ header h1 {
 }
 
 button {
-  padding: 12px 24px;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: white;
-  color: #667eea;
+  background: #35596b;
+  color: #101820;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
@@ -65,7 +65,7 @@ button {
 button:hover:not(:disabled):not(.lock) {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  background: #f0f0f0;
+  background: #3e5268;
 }
 
 button:active:not(:disabled) {
@@ -78,7 +78,6 @@ button:disabled {
 }
 
 button.lock {
-  background: #4caf50;
   color: white;
   opacity: 0.5;
   pointer-events: none;
@@ -90,23 +89,15 @@ button.lock::after {
 }
 
 #start-button {
-  background: #4caf50;
-  color: white;
+  background: #79c7c5;
+  color: #101820;
   font-size: 18px;
-  padding: 14px 32px;
-}
-
-#start-button:hover:not(:disabled) {
-  background: #45a049;
+  padding: 12px 28px;
 }
 
 #refresh-page-button {
-  background: #ff5722;
-  color: white;
-}
-
-#refresh-page-button:hover {
-  background: #f44336;
+  background: #2beac4;
+  color: #101820;
 }
 
 .start-button-container {
@@ -161,10 +152,11 @@ button.lock::after {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 2px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 10px;
+  background: #1c2533;
+  border: 2px solid #79c7c5;
+  padding: 4px;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
   backdrop-filter: blur(10px);
   width: fit-content;
 }
@@ -173,8 +165,7 @@ button.lock::after {
 .grid-cell {
   width: 45px;
   height: 45px;
-  background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  border: 2px solid #ccc;
+  background: #2b3a4a;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -182,7 +173,7 @@ button.lock::after {
   justify-content: center;
   font-weight: bold;
   font-size: 20px;
-  color: #333;
+  color: white;
   transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -194,32 +185,24 @@ button.lock::after {
 
 /* Hover preview for empty cells only */
 .grid-cell.selecting-grid-cells {
-  background: linear-gradient(145deg, #bbdefb, #90caf9);
-  border-color: #2196f3;
-  box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+  background: #3e5268;
 }
 
 /* Grey ships - placed by user */
 .grid-cell.selected-grid-cell {
-  background: #757575;
-  border-color: #616161;
-  box-shadow: 0 0 8px rgba(117, 117, 117, 0.5);
+  background: #35596b;
   cursor: default;
 }
 
 /* Prevent hover highlight on placed ships */
 .grid-cell.selected-grid-cell.selecting-grid-cells {
-  background: #757575;
-  border-color: #616161;
-  box-shadow: 0 0 8px rgba(117, 117, 117, 0.5);
+  background: #35596b;
 }
 
 /* Grey ships on hover */
 .grid-cell.selected-grid-cell:hover {
-  background: #757575;
-  border-color: #616161;
+  background: #35596b;
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(117, 117, 117, 0.8);
 }
 
 /* Red cells - hits */
