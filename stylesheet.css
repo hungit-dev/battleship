@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +28,6 @@ header h1 {
   letter-spacing: 2px;
 }
 
-/* Buttons */
 .buttons-container {
   display: flex;
   justify-content: center;
@@ -92,7 +90,7 @@ button.lock::after {
   background: #79c7c5;
   color: #101820;
   font-size: 18px;
-  padding: 12px 28px;
+  padding: 10px 28px;
 }
 
 #refresh-page-button {
@@ -108,7 +106,6 @@ button.lock::after {
   flex-wrap: wrap;
 }
 
-/* Winner message */
 #winner-message {
   text-align: center;
   font-size: 2rem;
@@ -120,7 +117,6 @@ button.lock::after {
   animation: pulse 1s infinite;
 }
 
-/* Grid container */
 .container {
   display: flex;
   justify-content: center;
@@ -137,7 +133,6 @@ button.lock::after {
   gap: 15px;
 }
 
-/* Grid titles */
 .title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -146,7 +141,6 @@ button.lock::after {
   letter-spacing: 1px;
 }
 
-/* Grids */
 .my-grid,
 .opponent-grid {
   display: grid;
@@ -161,7 +155,6 @@ button.lock::after {
   width: fit-content;
 }
 
-/* Grid cells - base styling */
 .grid-cell {
   width: 45px;
   height: 45px;
@@ -183,29 +176,24 @@ button.lock::after {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover preview for empty cells only */
 .grid-cell.selecting-grid-cells {
   background: #3e5268;
 }
 
-/* Grey ships - placed by user */
 .grid-cell.selected-grid-cell {
   background: #35596b;
   cursor: default;
 }
 
-/* Prevent hover highlight on placed ships */
 .grid-cell.selected-grid-cell.selecting-grid-cells {
   background: #35596b;
 }
 
-/* Grey ships on hover */
 .grid-cell.selected-grid-cell:hover {
   background: #35596b;
   transform: scale(1.05);
 }
 
-/* Red cells - hits */
 .grid-cell.hit-cell {
   background: #f44336;
   border-color: #c62828;
@@ -214,21 +202,18 @@ button.lock::after {
   animation: hitPulse 0.5s ease;
 }
 
-/* Prevent hover highlight on hit cells */
 .grid-cell.hit-cell.selecting-grid-cells {
   background: #f44336;
   border-color: #c62828;
   box-shadow: 0 0 15px rgba(244, 67, 54, 0.9), inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Red cells on hover */
 .grid-cell.hit-cell:hover {
   background: #f44336;
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(244, 67, 54, 1), inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Disabled cells and grids */
 .disabled {
   pointer-events: none;
   opacity: 0.6;
@@ -378,16 +363,5 @@ button.lock::after {
 
   header h1 {
     font-size: 1.3rem;
-  }
-}
-
-/* Print Styles */
-@media print {
-  body {
-    background: white;
-  }
-
-  button {
-    display: none;
   }
 }
