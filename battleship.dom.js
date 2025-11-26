@@ -123,6 +123,14 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
       //select the grid cells only if the game is not started
     ) {
       lockShip(currentLength);
+
+      //remove buttons highlights after placing ship
+      document
+        .querySelectorAll(".ship-length-buttons-container button")
+        .forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
       //select the correct UI grid cells based on the correct coordinates
       for (let i = 0; i < currentLength; i++) {
         if (direction === "row") {
@@ -145,7 +153,6 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
       currentLength = 0;
     }
   }
-
   if (isReady === true) {
     alert("Please click on the Opponent's grid!");
     return;
@@ -217,13 +224,11 @@ function letComputerAttack() {
     const gridCell = myGrid.querySelector(
       `div[data-row="${rowCoordinate}"][data-col="${columnCoordinate}"]`
     );
-
     if (gridCell.classList.contains("attacked") === false) {
       const receivedAttack = humanPlayerConsole.receiveAttack(
         rowCoordinate,
         columnCoordinate
       );
-
       if (receivedAttack === "miss") {
         gridCell.textContent = "X";
       }
@@ -254,9 +259,7 @@ function letComputerPlaceShips() {
         rowCoordinate = Math.floor(Math.random() * (10 - i + 1));
         columnCoordinate = Math.floor(Math.random() * 10);
       }
-
       const ship = Ship(`Ship ${i}`, i);
-
       const success = opponentPlayerConsole.placeShip(
         ship,
         rowCoordinate,
@@ -282,6 +285,27 @@ function checkForWinner() {
     winnerMessage.textContent = "Human is the winner!";
   }
 }
+// Helper: set active state on ship length buttons
+function setActiveLengthButton(length) {
+  document
+    .querySelectorAll(".ship-length-buttons-container button")
+    .forEach((btn) => {
+      btn.classList.remove("active");
+    });
+  if (length === 5) select5LengthButton.classList.add("active");
+  if (length === 4) select4LengthButton.classList.add("active");
+  if (length === 3) select3LengthButton.classList.add("active");
+  if (length === 2) select2LengthButton.classList.add("active");
+}
+function setActiveDirection(dir) {
+  placeShipHorizontallyButton.classList.toggle("active", dir === "row");
+  placeShipVerticallyButton.classList.toggle("active", dir === "column");
+}
+//select2LengthButton and placeShipHorizontallyButton are active by default
+document.addEventListener("DOMContentLoaded", () => {
+  setActiveLengthButton(2);
+  setActiveDirection("row");
+});
 
 //buttons for changing ship's size
 const select5LengthButton = document.querySelector("#ship-length-5-button");
@@ -290,16 +314,20 @@ const select3LengthButton = document.querySelector("#ship-length-3-button");
 const select2LengthButton = document.querySelector("#ship-length-2-button");
 select5LengthButton.addEventListener("click", () => {
   currentLength = 5;
+  setActiveLengthButton(5);
 });
 
 select4LengthButton.addEventListener("click", () => {
   currentLength = 4;
+  setActiveLengthButton(4);
 });
 select3LengthButton.addEventListener("click", () => {
   currentLength = 3;
+  setActiveLengthButton(3);
 });
 select2LengthButton.addEventListener("click", () => {
   currentLength = 2;
+  setActiveLengthButton(2);
 });
 
 const placeShipHorizontallyButton = document.querySelector(
@@ -311,9 +339,11 @@ const placeShipVerticallyButton = document.querySelector(
 //buttons for changing ship's direction
 placeShipHorizontallyButton.addEventListener("click", () => {
   direction = "row";
+  setActiveDirection("row");
 });
 placeShipVerticallyButton.addEventListener("click", () => {
   direction = "column";
+  setActiveDirection("column");
 });
 //lock the opponent grid by default if users have not clicked start button
 window.addEventListener("load", () => {
@@ -353,10 +383,18 @@ startGameButton.addEventListener("click", () => {
     alert("Please place all your ships before clicking start button!");
     return;
   }
-
   isReady = true;
   currentLength = 1; //let users select only 1 cell in 1 turn
   startGameButton.disabled = true;
+
+  //remove buttons highlights after clicking start button
+  document
+    .querySelectorAll(".ship-length-buttons-container button")
+    .forEach((btn) => {
+      btn.classList.remove("active");
+    });
+  placeShipHorizontallyButton.classList.remove("active");
+  placeShipVerticallyButton.classList.remove("active");
   lockGridAndButtons();
   letComputerPlaceShips();
 });

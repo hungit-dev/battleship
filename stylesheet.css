@@ -213,7 +213,14 @@ button.lock::after {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(244, 67, 54, 1), inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
-
+.ship-length-buttons-container button.active,
+.place-ship-button-container button.active {
+  background-color: #4a7c96;
+  color: white;
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(74, 124, 150, 0.4);
+  border: 2px solid #79c7c5;
+}
 .disabled {
   pointer-events: none;
   opacity: 0.6;
