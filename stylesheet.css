@@ -61,9 +61,9 @@ button {
 }
 
 button:hover:not(:disabled):not(.lock) {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  background: #3e5268;
+  background: #4a7c96;
 }
 
 button:active:not(:disabled) {
