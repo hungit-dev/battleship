@@ -380,7 +380,11 @@ myGrid.addEventListener("click", (event) => {
 const startGameButton = document.querySelector("#start-button");
 startGameButton.addEventListener("click", () => {
   if (hasHumanPlayerPlacedShips(humanGameBoard) === false) {
-    alert("Please place all your ships before clicking start button!");
+    winnerMessage.textContent =
+      "Please place all ships before starting the game!";
+    setTimeout(() => {
+      winnerMessage.textContent = "";
+    }, 3000);
     return;
   }
   isReady = true;

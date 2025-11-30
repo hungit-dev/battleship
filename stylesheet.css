@@ -108,7 +108,7 @@ button.lock::after {
 
 #winner-message {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #ffd700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -308,7 +308,9 @@ button.lock::after {
     padding: 10px 20px;
     font-size: 14px;
   }
-
+  .ship-length-buttons-container {
+    gap: 15px;
+  }
   .title {
     font-size: 1.3rem;
   }
@@ -326,7 +328,7 @@ button.lock::after {
   }
 
   #winner-message {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -349,10 +351,6 @@ button.lock::after {
 
   .title {
     font-size: 1.1rem;
-  }
-
-  #winner-message {
-    font-size: 1.2rem;
   }
 }
 
