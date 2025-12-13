@@ -2,23 +2,34 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="stylesheet.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battleship Game</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <h1>Battleship Game</h1>
   </header>
+
+  <!-- Main -->
   <main>
     <div class="buttons-container">
       <div class="ship-length-buttons-container">
-        <button id="ship-length-5-button">5-Cell Ship</button>
-        <button id="ship-length-4-button">4-Cell Ship</button>
-        <button id="ship-length-3-button">3-Cell Ship</button>
-        <button id="ship-length-2-button">2-Cell Ship</button>
+        <button id="ship-length-5-button">Carrier</button>
+        <button id="ship-length-4-button">Battleship</button>
+        <button id="ship-length-3-button">Submarine</button>
+        <button id="ship-length-2-button">Destroyer</button>
       </div>
       <div class="place-ship-button-container">
         <button id="place-ship-horizontally-button">
@@ -37,15 +48,20 @@
       <div class="container">
         <div class="my-grid-container">
           <div class="my-grid"></div>
-          <div class="title">My grid</div>
+          <h2 class="title">My grid</h2>
         </div>
         <div class="opponent-grid-container">
           <div class="opponent-grid"></div>
-          <div class="title">Opponent's grid</div>
+          <h2 class="title">Opponent's grid</h2>
         </div>
       </div>
     </div>
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Made by @lamnhathunghuynh</p>
+  </footer>
 
   <script type="module" src="battleship.dom.js"></script>
 </body>

@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Quantico";
   background: #101820;
   min-height: 100vh;
   color: #333;
@@ -14,7 +14,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
+/* Header */
 header {
   text-align: center;
   margin-bottom: 30px;
@@ -28,6 +28,7 @@ header h1 {
   letter-spacing: 2px;
 }
 
+/* Main */
 .buttons-container {
   display: flex;
   justify-content: center;
@@ -58,6 +59,7 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
+  font-family: "Quantico";
 }
 
 button:hover:not(:disabled):not(.lock) {
@@ -87,14 +89,13 @@ button.lock::after {
 }
 
 #start-button {
-  background: #79c7c5;
+  background: #aec3b0;
   color: #101820;
-  font-size: 18px;
   padding: 10px 28px;
 }
 
 #refresh-page-button {
-  background: #2beac4;
+  background: #eff6e0;
   color: #101820;
 }
 
@@ -110,11 +111,10 @@ button.lock::after {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #ffd700;
+  color: #e09f3e;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
   min-height: 40px;
-  animation: pulse 1s infinite;
 }
 
 .container {
@@ -231,6 +231,11 @@ button.lock::after {
   pointer-events: none;
 }
 
+/* Footer */
+footer {
+  margin-top: 1rem;
+}
+
 /* Animations */
 @keyframes hitPulse {
   0% {
@@ -281,17 +286,6 @@ button.lock::after {
   }
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.05);
-  }
-}
-
 /* Responsive Design */
 @media (max-width: 992px) {
   header h1 {
@@ -318,7 +312,7 @@ button.lock::after {
 
 @media (max-width: 768px) {
   header h1 {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
   }
 
   .grid-cell {
@@ -333,20 +327,11 @@ button.lock::after {
 }
 
 @media (max-width: 576px) {
-  header h1 {
-    font-size: 1.5rem;
-  }
-
   .grid-cell {
     width: 28px;
     height: 28px;
     font-size: 14px;
     border-width: 1px;
-  }
-
-  button {
-    padding: 8px 16px;
-    font-size: 13px;
   }
 
   .title {
@@ -361,12 +346,7 @@ button.lock::after {
     font-size: 12px;
   }
 
-  button {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
   header h1 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 }
