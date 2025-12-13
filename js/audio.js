@@ -14,7 +14,7 @@ export function playWinnerSound(){
 export function playBackgroundMusic(){
     const backgroundMusic=new Audio("../audio/background-music.mp3")
     backgroundMusic.loop = true;
-    backgroundMusic.volume = 0.2;
+    backgroundMusic.volume = 0.1;
     backgroundMusic.play()
 }
 export function playButtonClickSound(){
