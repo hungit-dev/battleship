@@ -1,4 +1,6 @@
 import { Ship, Player } from "./battleship.js";
+import { playHitSound,playMissSound, playWinnerSound,playBackgroundMusic,playButtonClickSound,playCellHoverSound,playPlaceShipSound} from "./audio.js";
+
 
 const humanPlayer = Player("human");
 const opponentPlayer = Player("computer");
@@ -123,7 +125,7 @@ function handleGridCellsClickOnHumanPlayerGameBoard(event, gridName) {
       //select the grid cells only if the game is not started
     ) {
       lockShip(currentLength);
-
+      playPlaceShipSound()
       //remove buttons highlights after placing ship
       document
         .querySelectorAll(".ship-length-buttons-container button")
@@ -174,20 +176,21 @@ function handleGridCellsClickOnComputerPlayerGameBoard(event) {
   ) {
     event.target.classList.add("hit-cell");
     event.target.classList.add("clicked");
+    playHitSound()
   } else {
     event.target.textContent = "X";
-
+    playMissSound()
     event.target.classList.add("clicked");
   }
   checkForWinner();
   if (!foundWinner) {
     // Let the computer attack the human's game board after 1 second and show the currently active (visible) game board
-    setTimeout(letComputerAttack, 1000);
+    setTimeout(letComputerAttack, 2000);
     setTimeout(() => {
       myGrid.classList.add("disabled");
       opponentGrid.classList.remove("disabled");
       lockGridAndButtons();
-    }, 2000);
+    }, 4000);
   }
   opponentGrid.classList.add("disabled"); //disable opponent grid immediately after attacking opponentGrid
 }
@@ -231,9 +234,11 @@ function letComputerAttack() {
       );
       if (receivedAttack === "miss") {
         gridCell.textContent = "X";
+        playMissSound()
       }
       if (receivedAttack === "hit") {
         gridCell.classList.add("hit-cell");
+        playHitSound()
       }
       gridCell.classList.add("attacked");
       attack = true;
@@ -277,11 +282,13 @@ function checkForWinner() {
   if (humanPlayerConsole.areAllShipsSunk() === true) {
     foundWinner = true;
     lockGridAndButtons();
+    playWinnerSound()
     winnerMessage.textContent = "Computer is the winner!";
   }
   if (opponentPlayerConsole.areAllShipsSunk() === true) {
     foundWinner = true;
     lockGridAndButtons();
+    playWinnerSound()
     winnerMessage.textContent = "Human is the winner!";
   }
 }
@@ -404,9 +411,33 @@ startGameButton.addEventListener("click", () => {
 });
 opponentGrid.addEventListener("click", (event) => {
   handleGridCellsClickOnComputerPlayerGameBoard(event);
-  console.log(humanGameBoard);
-  console.log(opponentGameBoard);
 });
 refreshPageButton.addEventListener("click", () => {
   window.location.reload();
 });
+
+
+//play background music
+winnerMessage.textContent="Click anywhere to play music"
+document.addEventListener(
+  "click",
+  () => {
+    playBackgroundMusic();
+    winnerMessage.textContent=""
+  },
+  { once: true }
+);
+
+//play sound after clicking button
+document.addEventListener("click",(e)=>{
+  if(e.target.tagName==="BUTTON"){
+    playButtonClickSound()
+  }
+})
+
+//play sound after hover cell
+document.addEventListener("mouseover",(e)=>{
+  if(e.target.classList.contains('grid-cell')){
+    playCellHoverSound()
+  }
+})

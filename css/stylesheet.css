@@ -14,6 +14,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 /* Header */
 header {
   text-align: center;
@@ -32,7 +33,7 @@ header h1 {
 .buttons-container {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 35px;
   margin-bottom: 30px;
   flex-wrap: wrap;
   animation: fadeIn 1s ease;
@@ -41,7 +42,7 @@ header h1 {
 .ship-length-buttons-container,
 .place-ship-button-container {
   display: flex;
-  gap: 10px;
+  gap: 13px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -213,6 +214,7 @@ button.lock::after {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(244, 67, 54, 1), inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
 .ship-length-buttons-container button.active,
 .place-ship-button-container button.active {
   background-color: #4a7c96;
@@ -221,6 +223,7 @@ button.lock::after {
   box-shadow: 0 10px 20px rgba(74, 124, 150, 0.4);
   border: 2px solid #79c7c5;
 }
+
 .disabled {
   pointer-events: none;
   opacity: 0.6;
@@ -302,9 +305,11 @@ footer {
     padding: 10px 20px;
     font-size: 14px;
   }
+
   .ship-length-buttons-container {
     gap: 15px;
   }
+
   .title {
     font-size: 1.3rem;
   }
